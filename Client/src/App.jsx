@@ -3,15 +3,16 @@ import React, { lazy, Suspense } from 'react';
 
 import { 
   FaCalendarAlt, 
-  // FaWifi, 
+  FaWifi, 
   // FaWifiOff, 
   FaSync, 
   FaDownload,
   FaBullhorn,
   FaRunning,
   FaCog,
-  FaPlus 
+  FaPlus
 } from 'react-icons/fa';
+import {MdWifiOff} from 'react-icons/md'
 import { cacheManager } from './utils/cacheManager';
 import { useServiceWorker } from './hooks/useServiceWorker';
 // const { format, addDays } = lazy(() => import('date-fns'));
@@ -136,11 +137,13 @@ function App() {
         <div className="max-w-6xl mx-auto flex justify-between items-center">
           <div className="flex items-center space-x-2">
             <FaCalendarAlt className="text-xl" />
-            <h1 className="text-xl font-bold">Society Events</h1>
+            <h1 className="text-xl font-bold">Society Connect</h1>
           </div>
           <div className="flex items-center space-x-4">
             <div className={`flex items-center space-x-2 ${isOnline ? 'text-green-300' : 'text-yellow-300'}`}>
-              {/* {isOnline ? <FaWifi /> : <FaWifiOff />} */}
+              {isOnline ? <FaWifi /> : <MdWifiOff/>}
+              
+              
               <span className="text-sm">{isOnline ? 'Online' : 'Offline'}</span>
             </div>
             <button
@@ -149,7 +152,7 @@ function App() {
               className="p-2 rounded-full bg-white bg-opacity-20 hover:bg-opacity-30 disabled:opacity-50 transition"
               title="Refresh data"
             >
-              <FaSync />
+              <FaSync className={`text-black  transition-all  ${loading ?  "  rotate-90" : " rotate-0"}`}  />
             </button>
           </div>
         </div>
@@ -177,7 +180,7 @@ function App() {
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`flex-1 py-4 px-6 font-medium capitalize transition ${
+              className={`flex-1 sm:block flex flex-col justify-center items-center py-4 font-medium capitalize transition-all ${
                 activeTab === tab
                   ? 'border-b-2 border-indigo-600 text-indigo-600'
                   : 'text-gray-500 hover:text-gray-700'
@@ -319,16 +322,14 @@ function App() {
                       </div>
                       
                       <button
-                        onClick={() => cacheManager.clearAllCache()}
+                        onClick={() => alert('Funtionality is disabled currently. thank you!')}
                         className="px-4 py-2 bg-red-100 text-red-600 rounded-lg hover:bg-red-200 transition font-medium"
                       >
                         Clear All Cache
                       </button>
                       
                       <button
-                        onClick={() => navigator.serviceWorker.getRegistrations().then(regs => 
-                          regs.forEach(reg => reg.unregister())
-                        )}
+                        onClick={() => alert( 'Funtionality is disabled currently. thank you!')}
                         className="px-4 py-2 bg-gray-100 text-gray-600 rounded-lg hover:bg-gray-200 transition font-medium"
                       >
                         Unregister Service Worker
