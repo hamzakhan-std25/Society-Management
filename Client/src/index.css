@@ -1,5 +1,21 @@
 @import "tailwindcss";
 
+/* Add custom animations */
+@theme {
+  --animate-slideUp: slideUp 0.3s ease-out;
+  
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
 /* @tailwind base;
 @tailwind components;
 @tailwind utilities; */
